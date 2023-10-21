@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7 .0;
+pragma solidity ^0.8;
 
 import "./Collection.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Main is Ownable {
-  int private count;
+  int256 private count;
   mapping(int => Collection) private collections;
 
   constructor() {
@@ -14,21 +14,21 @@ contract Main is Ownable {
 
   function createCollection(
     string memory name,
-    uint cardCount
+    uint256 cardCount
   ) external onlyOwner {
     Collection newCollection = new Collection(name, cardCount);
-    collections[count++] = newCollection;
+    collections[count] = newCollection;
+    count++;
   }
 
   function mintCardToCollection(
-    uint collectionId,
-    address to,
+    int256 collectionId,
     string memory img
   ) external onlyOwner {
     require(
       collections[collectionId] != Collection(address(0)),
       "Collection does not exist"
     );
-    collections[collectionId].mintTo(to, img);
+    collections[collectionId].addCard(img);
   }
 }

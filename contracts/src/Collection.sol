@@ -1,32 +1,32 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7 .0;
+pragma solidity ^0.8;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract Collection {
-  string public name;
-  int public cardCount;
+contract Collection is ERC721{
+  string public cardName;
+  uint256 public cardCount;
 
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
 
   struct Card {
-    string name;
-    int cardCount;
+    string img;
+    uint256 cardNumber;
   }
 
   mapping(uint => Card) public cards;
 
   constructor(
     string memory _name,
-    uint _cardCount
-  ) ERC721(_name, "TOKEN_SYMBOL_HERE") {
-    name = _name;
+    uint256 _cardCount
+  ) ERC721(_name, "MYNFT") {
+    cardName = _name;
     cardCount = _cardCount;
   }
 
-  // creat cards for myself
+  // create cards for myself
   function addCard(string memory img) external {
     _tokenIds.increment();
     uint256 newCardId = _tokenIds.current();
