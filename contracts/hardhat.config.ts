@@ -31,7 +31,7 @@ const config: HardhatUserConfig = {
   },
   abiExporter: {
     runOnCompile: true,
-    path: '../frontend/src/abis',
+    path: '../backend/src/abis',
     clear: true,
     flat: true,
     only: [],

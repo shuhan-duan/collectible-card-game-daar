@@ -1,0 +1,11 @@
+[
+  "constructor()",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function collections(int256) view returns (address)",
+  "function createCollection(string,uint256)",
+  "function getAllCollectionsAndCards() view returns (tuple(string,uint256,tuple(string,uint256)[])[])",
+  "function mintCardToCollection(int256,string)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function transferOwnership(address)"
+]

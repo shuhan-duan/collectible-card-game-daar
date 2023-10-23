@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
 import * as ethereum from './ethereum'
-import { contracts } from '@/contracts.json'
+import { contracts } from '../contracts.json'
 import type { Main } from '$/src/Main'
 export type { Main } from '$/src/Main'
 
@@ -22,5 +22,6 @@ export const init = async (details: ethereum.Details) => {
   const contract_ = signer ? contract.connect(signer) : contract
   return contract_ as any as Main
 }
+
 
 export const myShip = () => contracts.Main.address
