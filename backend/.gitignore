@@ -1,0 +1,16 @@
+node_modules
+dist
+*.local
+src/abis
+src/contracts.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

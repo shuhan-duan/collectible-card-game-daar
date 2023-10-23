@@ -28,18 +28,18 @@ contract Collection is ERC721{
 
   // create cards for myself
   function addCard(string memory img) external {
-    _tokenIds.increment();
     uint256 newCardId = _tokenIds.current();
     _mint(msg.sender, newCardId); // Mint a new NFT to the caller
+    _tokenIds.increment();
 
     Card memory newCard = Card({cardNumber: newCardId, img: img});
     cards[newCardId] = newCard;
   }
 
   function mintTo(address to, string memory img) external {
-    _tokenIds.increment();
     uint256 newCardId = _tokenIds.current();
     _mint(to, newCardId);
+    _tokenIds.increment();
 
     Card memory newCard = Card({cardNumber: newCardId, img: img});
     cards[newCardId] = newCard;

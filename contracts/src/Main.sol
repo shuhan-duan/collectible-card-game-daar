@@ -63,14 +63,4 @@ contract Main is Ownable {
 
     return collectionInfo;
   }
-
-//  receive() external payable{
-//    console.logBytes(msg.data);
-//    // This function is executed when a contract receives plain Ether (without data)
-//  }
-
-//  fallback() external payable {
-//    // This function is executed on a call to the contract if none of the other
-//    // functions match the given function signature, or if no data is supplied at all
-//  }
 }

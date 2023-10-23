@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
 import * as ethereum from './ethereum'
-import { contracts } from '../contracts.json'
+import { contracts } from '@/contracts.json'
 import type { Main } from '$/src/Main'
 export type { Main } from '$/src/Main'
 
