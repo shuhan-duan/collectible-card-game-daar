@@ -1,8 +1,8 @@
 node_modules
 dist
 *.local
-src/abis
-src/contracts.json
+/src/abis/
+/src/contracts.json
 
 # Editor directories and files
 .vscode/*
@@ -14,3 +14,4 @@ src/contracts.json
 *.njsproj
 *.sln
 *.sw?
+
