@@ -10,18 +10,23 @@ const deployer: DeployFunction = async hre => {
   const mainDeployment = await deploy('Main', {
     from: deployer,
     log: true,
+    gasLimit: 8000000
   });
+
+  console.log("Main contract deployed to:", mainDeployment.address);
 
   const mainContract = await ethers.getContractAt('Main', mainDeployment.address);
 
-  const collectionName = 'MyCollection';
-  const cardCount = 10;
-  await mainContract.createCollection(collectionName, cardCount);
-
-  for (let i = 1; i <= 5; i++) {
-    const imageUrl = `https://en.onepiece-cardgame.com/images/cardlist/card/OP01-001.png`;
-    await mainContract.mintCardToCollection(0, imageUrl);
-  }
+  // const collectionName = 'MyCollection';
+  // const cardCount = 10;
+  // await mainContract.createCollection(collectionName, cardCount);
+  //
+  // for (let i = 1; i <= 5; i++) {
+  //   const imageUrl = `https://en.onepiece-cardgame.com/images/cardlist/card/OP01-001.png`;
+  //   await mainContract.mintCardToCollection(0, imageUrl);
+  // }
+  // const res = await mainContract.getCount();
+  // console.log(res.toNumber())
 }
 
 export default deployer

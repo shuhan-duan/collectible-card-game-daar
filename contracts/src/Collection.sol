@@ -44,4 +44,11 @@ contract Collection is ERC721{
     Card memory newCard = Card({cardNumber: newCardId, img: img});
     cards[newCardId] = newCard;
   }
+
+  // New function to retrieve card information based on the index
+  function getCardInfo(uint256 index) external view returns (string memory img, uint256 cardNumber) {
+    require(index < cardCount, "Index out of bounds");
+    Card storage card = cards[index];
+    return (card.img, card.cardNumber);
+  }
 }
