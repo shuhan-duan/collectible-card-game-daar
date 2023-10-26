@@ -11,6 +11,7 @@ contract Main is Ownable {
 
   // Define a struct to store collection information
   struct CollectionInfo {
+    int collectionId;
     string collectionName;
     uint256 cardCount;
     CardInfo[] cards;
@@ -55,6 +56,7 @@ contract Main is Ownable {
         cardInfo[j] = CardInfo(img, cardNumber);
       }
       collectionInfo[uint256(i)] = CollectionInfo({
+        collectionId : i,
         collectionName: collection.cardName(),
         cardCount: collection.cardCount(),
         cards: cardInfo

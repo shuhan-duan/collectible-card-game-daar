@@ -51,9 +51,10 @@ async function getCollections() {
     const collection = await contract.getAllCollectionsAndCards()
     return collection.map((collection: any) => {
         return {
-            collectionName: collection[0],
-            cardCount: collection[1].toNumber(),
-            cards: collection[2].map((card: any) => {
+            collectionId: collection[0].toNumber(),
+            collectionName: collection[1],
+            cardCount: collection[2].toNumber(),
+            cards: collection[3].map((card: any) => {
                 return {
                     img: card[0],
                     cardNumber: card[1].toNumber(),
@@ -66,7 +67,7 @@ async function getCollections() {
 collectionsRouter.get('/get', async (req: Request, res: Response) => {
     try {
         const mes = await getCollections();
-        res.json({ message: mes });
+        res.json(mes);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred' });
