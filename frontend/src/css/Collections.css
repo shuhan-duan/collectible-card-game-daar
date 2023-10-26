@@ -1,0 +1,51 @@
+.page-content{
+    width: 100%;
+}
+
+h2{
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.collection {
+    display: flex;
+    flex-wrap: wrap;
+    /*gap: 10px; !* Adjust the gap between cards as needed *!*/
+    max-width: 1250px; /* 5 cards * 215px max-width each */
+
+    /* Center the content horizontally within the container */
+    margin: 0 auto;
+    justify-content: start;
+    /* Add more styles to control spacing and alignment as needed */
+}
+
+/* Add more CSS rules to style the collection as desired */
+
+.collection-block {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.collection-left {
+    flex: 1; /* Takes 15% of the space */
+    max-width: 15%;
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.collection-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.collection-left ul li {
+    margin-bottom: 10px;
+}
+
+.collection-right {
+    flex: 3; /* Takes the rest of the space */
+    max-width: 85%;
+    padding: 20px;
+    background-color: #fff;
+}

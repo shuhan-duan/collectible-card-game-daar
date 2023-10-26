@@ -1,7 +1,9 @@
 // Collections.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../Collections.css'
+import '../css/Collections.css'
+import Header from "@/components/Header";
+import Card from "@/components/Card";
 
 interface CollectionItem {
     collectionId: number;
@@ -32,28 +34,32 @@ const Collections: React.FC = () => {
     if (collectionData === null) {
         return <div>Loading...</div>;
     }
-    {console.log(collectionData)}
+
     return (
-        <div>
-            <header className="page-header" >
-                <div className="header-content">
-                    {/*<h1>Your Page Title</h1>*/}
-                    {/*<p>Your page subtitle or description</p>*/}
-                </div>
-            </header>
+        <div className="page-content">
+            <Header/>
             <h2>Collections</h2>
-            <ul>
-                {collectionData.map((item) => (
-                    <li key={item.collectionId}>
-                        <div>{item.collectionName}</div>
-                        <ul>
-                            {item.cards.map( (card) => (
-                                <img src={card.img} alt=""/>
-                                ))}
-                        </ul>
-                    </li>
-                ))}
-            </ul>
+
+            <div className="collection">
+                <div className="collection-left" >
+                    <ul>
+                        {collectionData.map((item) => (
+                                <li key={item.collectionId}>
+                                    <a href="#" >{item.collectionName}</a>
+                                </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="collection-right">
+                    {collectionData.map((item) => (
+                        <div className="collection-block">
+                        {item.cards.map((card) => (
+                                <Card key={card.cardNumber} imageUrl={card.img} />
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

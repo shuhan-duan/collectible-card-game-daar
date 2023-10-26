@@ -1,6 +1,6 @@
 import {ethers} from "ethers";
-import {Main} from "$/src";
-import {contracts} from './contracts.json'
+import {Main} from "$/src"; //tsconfig.json  "paths": { "$/*": ["../typechain/*"]}
+import {contracts} from '../../frontend/src/contracts.json'
 
 export const init = async () => {
     const jsonRpcUrl = 'http://127.0.0.1:8545';

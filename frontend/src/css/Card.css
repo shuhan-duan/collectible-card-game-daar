@@ -1,0 +1,30 @@
+/* Card.css */
+
+.card {
+    width: calc(20% - 20px); /* 20% width for 5 cards in a row with 10px margin between them */
+    max-width: 215px;
+    /*height: 300px; !* Adjust the card height as needed *!*/
+    max-height: 300px;
+    background-color: #fff; /* Card background color */
+    border-radius: 10px; /* Rounded borders */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle effect */
+    margin: 10px; /* Add spacing between cards */
+
+    /* Center the image within the card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image {
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.2s; /* Transition for hover effect */
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
+/* Add more CSS rules to style the card as desired */

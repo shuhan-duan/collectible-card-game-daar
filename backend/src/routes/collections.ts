@@ -36,6 +36,24 @@ async function addToCollection(collectionId: number) {
     await contract.mintCardToCollection(collectionId, "https://i.ibb.co/wwqq7h6/ST01-017.jpg");
 
 
+    await contract.mintCardToCollection(1, "https://i.ibb.co/V943b27/ST02-001.jpg");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/4Ft6d70/ST02-002.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/1szLTmw/ST02-003.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/tMXDcR5/ST02-004.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/9tpf6yS/ST02-005.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/cNjDBvC/ST02-006.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/ZRQgT9S/ST02-007.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/KVnHHjz/ST02-008.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/hMYt0bc/ST02-009.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/s1kRXYv/ST02-010.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/GJkRbhT/ST02-011.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/1KjYj3w/ST02-012.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/hXSYtgR/ST02-013.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/Kw01V37/ST02-014.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/Lgx14f2/ST02-015.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/tDnzKGs/ST02-016.webp");
+    await contract.mintCardToCollection(1, "https://i.ibb.co/N7DdvGf/ST02-017.webp");
+
 }
 
 async function getCollections() {
@@ -77,6 +95,9 @@ collectionsRouter.get('/get', async (req: Request, res: Response) => {
 collectionsRouter.get('/create', async (req: Request, res: Response) => {
     try {
         const mes = await createCollection("ST01", 17);
+        const mes2 = await createCollection("ST02", 17);
+        const mes3 = await createCollection("ST03", 17);
+        const mes4 = await createCollection("ST04", 17);
         res.json({ message: mes });
     } catch (error) {
         console.error(error);
