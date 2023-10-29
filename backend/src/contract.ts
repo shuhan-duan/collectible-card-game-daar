@@ -1,5 +1,5 @@
 import {ethers} from "ethers";
-import {Main} from "$/src"; //tsconfig.json  "paths": { "$/*": ["../typechain/*"]}
+import {Main} from "$/src";
 import {contracts} from '../../frontend/src/contracts.json'
 
 export const init = async () => {

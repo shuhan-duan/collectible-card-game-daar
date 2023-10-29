@@ -1,14 +1,23 @@
 import React from 'react';
-import '../css/Header.css'; // Import your CSS file for styling
+import '../css/Header.css';
+import TextConnection from "@/components/TextConnection";
+import Menu from "@/components/Menu";
 
-const PageHeader: React.FC = () => {
+interface HeaderProps {
+    wallet : any
+}
+
+const PageHeader: React.FC<HeaderProps> = ({wallet}) => {
     return (
-        <header className="page-header">
-            <div className="header-content">
-                {/*<h1>Your Page Title</h1>*/}
-                {/*<p>Your page subtitle or description</p>*/}
+        <div className="header">
+            <header className="page-header">
+                <div className="header-content"></div>
+            </header>
+            <div className="menu">
+                <Menu wallet={wallet}/>
             </div>
-        </header>
+        </div>
+
     );
 };
 

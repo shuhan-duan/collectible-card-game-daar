@@ -23,8 +23,9 @@
     border-radius: 10px;
 }
 
-.card:hover {
+.card > img:hover {
     transform: scale(1.05); /* Slightly increase the size on hover */
+    cursor: pointer;
 }
 
 /* Add more CSS rules to style the card as desired */

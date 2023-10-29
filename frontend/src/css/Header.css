@@ -1,9 +1,11 @@
-
+.header{
+    width: 100%;
+}
 .page-header {
     background-image: url(../../fc745f8a_1832404.jpeg);
     position: relative;
     width: 100%;
-    height: 300px; /* You can adjust the height as needed */
+    height: 200px; /* You can adjust the height as needed */
     background-size: cover;
     background-position: center;
 

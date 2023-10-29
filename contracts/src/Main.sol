@@ -19,6 +19,8 @@ contract Main is Ownable {
   struct CardInfo {
     string img;
     uint256 cardNumber;
+    int gid;
+    address owner;
   }
 
   constructor() {
@@ -35,16 +37,19 @@ contract Main is Ownable {
   }
   function mintCardToCollection(
     int256 collectionId,
-    string memory img
+    address to,
+    string memory img,
+    int256 gid
   ) external onlyOwner {
     require(
-      collections[collectionId] != Collection(address(0)), "Collection does not exist"
+      collections[collectionId] != Collection(address(0)),
+      "Collection does not exist"
     );
-    collections[collectionId].addCard(img);
+    collections[collectionId].mintTo(to, img, gid);
   }
 
   // Getter function to retrieve information about all collections and cards
-  function getAllCollectionsAndCards() public view returns (CollectionInfo[] memory) {
+  function getCollectionsAndCards(bool all, address user) public view returns (CollectionInfo[] memory) {
     CollectionInfo[] memory collectionInfo = new CollectionInfo[](uint256(count));
     for (int256 i = 0; i < count; i++) {
       Collection collection = collections[i];
@@ -52,12 +57,18 @@ contract Main is Ownable {
       CardInfo[] memory cardInfo = new CardInfo[](collection.cardCount());
 
       for (uint256 j = 0; j < collection.cardCount(); j++) {
-        (string memory img, uint256 cardNumber) = collection.getCardInfo(j);
-        cardInfo[j] = CardInfo(img, cardNumber);
+        (string memory img, uint256 cardNumber, int256 gid, address cardOwner) = collection.getCardInfo(j);
+        if (all) {
+          cardInfo[j] = CardInfo(img, cardNumber, gid, cardOwner);
+        }else{
+          if (cardOwner == user) {
+            cardInfo[j] = CardInfo(img, cardNumber, gid, cardOwner);
+          }
+        }
       }
       collectionInfo[uint256(i)] = CollectionInfo({
         collectionId : i,
-        collectionName: collection.cardName(),
+        collectionName: collection.collectionName(),
         cardCount: collection.cardCount(),
         cards: cardInfo
       });

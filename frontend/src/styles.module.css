@@ -1,5 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/oswald-4');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
 * {
   box-sizing: border-box;
+  /*font-family: 'Roboto', sans-serif;*/
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 body {
@@ -22,3 +27,4 @@ body {
 .cell {
   background: #ddd;
 }
+
