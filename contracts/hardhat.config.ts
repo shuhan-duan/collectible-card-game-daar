@@ -6,6 +6,7 @@ import '@nomiclabs/hardhat-waffle'
 import '@typechain/hardhat'
 import 'hardhat-gas-reporter'
 import 'hardhat-abi-exporter'
+import "hardhat-contract-sizer"
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more

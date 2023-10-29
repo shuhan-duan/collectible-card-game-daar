@@ -26,7 +26,6 @@ interface CardItem {
 
 const UserCollections: React.FC<CollectionProps> = ({wallet}) => {
     const [collectionData, setCollectionData] = useState<CollectionItem[] | null>(null);
-    console.log(wallet)
     useEffect(() => {
         if (wallet?.details.account) {
             // Ensure wallet and wallet.details.account are defined
