@@ -6,6 +6,12 @@ import axios from "axios"; // Import your CSS file for styling
 interface CardProps {
     imageUrl: string;
     cardData: number;
+    onSell: boolean;
+    onClickSell: any;
+    onClickBuy: any;
+    isOwner: boolean;
+    showButtons: boolean;
+    owner: string;
 }
 
 interface CardInfo {
@@ -30,7 +36,7 @@ interface CardInfo {
     scrD: any;
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, cardData }) => {
+const Card: React.FC<CardProps> = ({ imageUrl, cardData, onSell, onClickSell, onClickBuy, isOwner, showButtons, owner }) => {
 
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [cardJson, setCardJson] = useState<CardInfo | null>(null);
@@ -55,16 +61,29 @@ const Card: React.FC<CardProps> = ({ imageUrl, cardData }) => {
     }, []);
 
     return (
-        <div className="card">
-            <img src={imageUrl} alt="Card" className="card-image" onClick={openPopup}/>
-            {cardJson && isPopupOpen && (
-                <CardPopup
-                    cardImg={imageUrl}
-                    cardData={cardJson}
-                    onClose={closePopup}
-                />
-            )}
+        <div className="card-block">
+            <div className="card">
+                <img src={imageUrl} alt="Card" className="card-image" onClick={openPopup}/>
+                {cardJson && isPopupOpen && (
+                    <CardPopup
+                        cardImg={imageUrl}
+                        cardData={cardJson}
+                        onClose={closePopup}
+                    />
+                )}
+            </div>
+            {
+                showButtons ?
+                    onSell ? (
+                        isOwner ? (<div> on sale </div>) : (<button className="buy-button" onClick={onClickBuy}> Buy </button>)
+                    ) : (
+                        isOwner ? (<button className="sell-button" onClick={onClickSell}> Sell </button>) : (<div></div>)
+                    )
+                : (<div className="owner-text-card">owned by: <span>{owner}</span></div>)
+            }
+
         </div>
+
     );
 };
 

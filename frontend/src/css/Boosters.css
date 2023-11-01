@@ -1,0 +1,90 @@
+
+.boosters-head{
+    display: flex;
+    max-width: 1250px;
+    justify-content: flex-start;
+    margin: 0 auto 30px;
+}
+
+.boosters-head h1{
+    max-width: unset;
+    margin: 0 30px 0 0 ;
+}
+
+.boosters-head button {
+    margin-left: 50px;
+    background: transparent; /* Make the button transparent */
+    color: #76bafa; /* Set the text color to #76bafa */
+    border: 1px solid #76bafa; /* Add a 1px solid border with the same color */
+    border-radius: 10px; /* Create rounded corners with a radius of 20px */
+    padding: 10px 20px; /* Add padding to the button for better readability */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+    font-family: "Oswald Regular", serif;
+    font-size: 16px;
+}
+
+.boosters-head button:hover {
+    background: #76bafa; /* Change the background color on hover */
+    color: #fff; /* Change the text color to white on hover */
+}
+
+.not-redeemed{
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.booster {
+    width: calc(20% - 20px); /* 20% width for 5 cards in a row with 10px margin between them */
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); !* Box shadow for a subtle effect *!*/
+    margin: 10px; /* Add spacing between cards */
+    position: relative;
+    /* Center the image within the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 355px;
+    border: 1px solid #76bafa;
+    border-radius: 10px;
+    padding-bottom: 5px;
+}
+
+.booster-image {
+    max-width: 215px;
+    /*height: 300px; !* Adjust the card height as needed *!*/
+    max-height: 300px;
+    /*background-color: #fff; !* Card background color *!*/
+    border-radius: 10px; /* Rounded borders */
+}
+
+
+/* Add this CSS code to your stylesheets */
+
+
+.booster label {
+    display: block; /* Ensure label is displayed on a new line */
+    text-align: center; /* Center-align the label text */
+}
+
+.redeem-button {
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    color: #76bafa;
+    text-decoration: none;
+    border-top: 1px solid transparent; /* Initial transparent border */
+    transition: border-color 0.3s; /* Smooth transition for border color change */
+    font-family: "Oswald Regular", serif;
+    font-size: 16px;
+}
+
+.booster:hover {
+    background: #76bafa; /* Change the background color on hover */
+    color: #fff; /* Change the text color to white on hover */
+}
+.booster:hover .redeem-button{
+    color: #fff; /* Change the text color to white on hover */
+}

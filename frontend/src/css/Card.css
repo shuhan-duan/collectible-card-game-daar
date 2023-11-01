@@ -1,7 +1,13 @@
 /* Card.css */
+.card-block{
+    width: calc(20% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .card {
-    width: calc(20% - 20px); /* 20% width for 5 cards in a row with 10px margin between them */
+     /* 20% width for 5 cards in a row with 10px margin between them */
     max-width: 215px;
     /*height: 300px; !* Adjust the card height as needed *!*/
     max-height: 300px;
@@ -28,4 +34,33 @@
     cursor: pointer;
 }
 
+.card-block .sell-button{
+    background-color: transparent;
+    border-radius: 10px;
+    width: 50px;
+    border: 1px solid #76bafa;
+    color: #76bafa;
+}
+.card-block .sell-button:hover{
+    background: #76bafa; /* Change the background color on hover */
+    color: #fff;
+}
 /* Add more CSS rules to style the card as desired */
+
+.card-block .buy-button{
+    background-color: transparent;
+    border-radius: 10px;
+    width: 50px;
+    border: 1px solid black;
+    color: black;
+}
+.card-block .buy-button:hover{
+    background: black; /* Change the background color on hover */
+    color: #fff;
+}
+.owner-text-card{
+    font-size: 12px;
+}
+.owner-text-card span{
+    font-size: 14px;
+}

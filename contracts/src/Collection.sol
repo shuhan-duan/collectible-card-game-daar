@@ -3,61 +3,86 @@ pragma solidity ^0.8;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "hardhat/console.sol";
 
-contract Collection is ERC721{
-  address public owner;
-  string public collectionName;
-  uint256 public cardCount;
-  bool public redeemed;
+contract Collection is ERC721 {
+    address public owner;
+    string public collectionName;
+    uint256 public cardCount;
+    bool public redeemed;
 
-  using Counters for Counters.Counter;
-  Counters.Counter private _tokenIds;
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+    mapping(uint256 => address) private tokenApprovals;
 
-  struct Card {
-    string img;
-    uint256 cardNumber;
-    int256 gid;
-  }
+    struct Card {
+        string img;
+        uint256 cardNumber;
+        int256 gid;
+        bool onSell;
+    }
 
-  mapping(uint => Card) public cards;
+    mapping(uint => Card) public cards;
 
-  constructor(
-    string memory _name,
-    uint256 _cardCount,
-    address _owner
-  ) ERC721(_name, "MYNFT") {
-    collectionName = _name;
-    cardCount = _cardCount;
-    owner = _owner;
-    redeemed = false;
-  }
+    constructor(
+        string memory _name,
+        uint256 _cardCount,
+        address _owner
+    ) ERC721(_name, "MYNFT") {
+        collectionName = _name;
+        cardCount = _cardCount;
+        owner = _owner;
+        redeemed = true;
+    }
 
-  // create cards for myself
-  function addCard(string memory img, int256 gid) external {
-    uint256 newCardId = _tokenIds.current();
-    _mint(msg.sender, newCardId); // Mint a new NFT to the caller
-    _tokenIds.increment();
+    // create cards for myself
+    function addCard(string memory img, int256 gid) external {
+        uint256 newCardId = _tokenIds.current();
+        _mint(msg.sender, newCardId); // Mint a new NFT to the caller
+        _tokenIds.increment();
 
-    Card memory newCard = Card({cardNumber: newCardId, img: img, gid: gid});
-    cards[newCardId] = newCard;
-  }
+        Card memory newCard = Card({cardNumber: newCardId, img: img, gid: gid, onSell: false});
+        cards[newCardId] = newCard;
+    }
 
-  function mintTo(address to, string memory img, int256 gid) external {
-    uint256 newCardId = _tokenIds.current();
-    _mint(to, newCardId);
-    _tokenIds.increment();
+    function mintTo(address to, string memory img, int256 gid) external {
+        uint256 newCardId = _tokenIds.current();
 
-    Card memory newCard = Card({cardNumber: newCardId, img: img, gid: gid});
-    cards[newCardId] = newCard;
-  }
-  // New function to retrieve card information based on the index
-  function getCardInfo(uint256 index) external view returns (string memory img, uint256 cardNumber, int256 gid, address cardOwner) {
-    require(index < cardCount, "Index out of bounds");
-    Card storage card = cards[index];
-    return (card.img, card.cardNumber, card.gid, ownerOf(card.cardNumber));
-  }
+        _mint(to, newCardId);
+        _tokenIds.increment();
 
-  function setRedeemed(bool value) public {
-    redeemed = value;
-  }
+        Card memory newCard = Card({cardNumber: newCardId, img: img, gid: gid, onSell: false});
+        cards[newCardId] = newCard;
+    }
+    // New function to retrieve card information based on the index
+    function getCardInfo(uint256 tokenId) external view returns (string memory img, uint256 cardNumber, int256 gid, bool onSell, address cardOwner) {
+        require(tokenId < cardCount, "Index out of bounds");
+        Card storage card = cards[tokenId];
+        return (card.img, card.cardNumber, card.gid, card.onSell, ownerOf(card.cardNumber));
+    }
+
+    function setRedeemed(bool value) public {
+        redeemed = value;
+    }
+
+    function listCard(uint256 tokenId, address seller) external {
+        require(ownerOf(tokenId) == seller, "OW1");
+        cards[tokenId].onSell = true;
+        _approve(msg.sender, cards[tokenId].cardNumber);
+    }
+
+    function transferCard(uint256 tokenId, uint256 price, address seller, address buyer, uint256 transfer) public payable {
+        require(transfer >= price, "Insufficient payment");
+        // Transfer the NFT to the buyer
+        safeTransferFrom(seller, buyer, tokenId);
+        cards[tokenId].onSell = false;
+    }
+
+    function approve(address to, uint256 tokenId) public override{
+        address tOwner = ownerOf(tokenId);
+        require(to != tOwner, "Approval to owner");
+        tokenApprovals[tokenId] = to;
+        emit Approval(tOwner, to, tokenId);
+    }
+
 }

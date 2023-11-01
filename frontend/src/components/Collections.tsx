@@ -16,18 +16,31 @@ interface CollectionItem {
     collectionName: string;
     cardCount: number;
     cards: CardItem[];
+    redeemed: boolean;
 }
 
 interface CardItem {
     img: string;
     cardNumber: number;
     cardGid: number;
+    onSell: boolean;
+    cardOwner: string;
 }
 
-const Collections: React.FC<CollectionProps> = () => {
+const Collections: React.FC<CollectionProps> = ({wallet}) => {
     const [collectionData, setCollectionData] = useState<CollectionItem[] | null>(null);
+    const [walletAddress, setWalletAddress] = useState<string>("");
+    useEffect(() => {
+        if (wallet?.details.account) {
+            setWalletAddress(wallet.details.account)
+        }
+    }, [wallet]);
 
     useEffect(() => {
+        getCollections()
+    }, []);
+
+    const getCollections = () => {
         // Fetch data from an API using Axios
         axios.get('http://localhost:3000/api/collections/get')
             .then((response) => {
@@ -36,11 +49,7 @@ const Collections: React.FC<CollectionProps> = () => {
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
-    }, []);
-
-    // if (collectionData === null) {
-    //     return <div>Loading...</div>;
-    // }
+    }
 
     return (
         <div className="page-content">
@@ -51,7 +60,7 @@ const Collections: React.FC<CollectionProps> = () => {
             <div className="collection">
                 <div className="collection-left" >
                     <ul>
-                        {collectionData.map((item) => (
+                        {collectionData.filter((item) => item.redeemed).map((item) => (
                                 <li key={item.collectionId}>
                                     <a href={`#${item.collectionId}`} >{item.collectionName}</a>
                                 </li>
@@ -59,7 +68,7 @@ const Collections: React.FC<CollectionProps> = () => {
                     </ul>
                 </div>
                 <div className="collection-right">
-                    {collectionData.map((item) => (
+                    {collectionData.filter((item) => item.redeemed).map((item) => (
                         <div key={item.collectionId} id={`${item.collectionId}`}>
                             <div className="collection-title">
                                 <span className="collection-count">{item.cardCount}</span>
@@ -71,7 +80,11 @@ const Collections: React.FC<CollectionProps> = () => {
                                     .filter((card) => card.img)
                                     .map((card) =>
                                     (
-                                        <Card key={card.cardNumber} imageUrl={card.img} cardData={card.cardGid} />
+                                        <Card key={card.cardNumber} imageUrl={card.img} cardData={card.cardGid}
+                                              onClickSell={() => {}}
+                                              onClickBuy={()=>{}}
+                                              onSell={card.onSell} isOwner={walletAddress === card.cardOwner} showButtons={false} owner={walletAddress === card.cardOwner ? "you" : card.cardOwner.substring(0, 3)+".."+card.cardOwner.substring(38)}
+                                        />
                                     )
                                 )
                             }
