@@ -5,7 +5,8 @@
   "repository": "git@github.com:ghivert/touche-coule.git",
   "author": "Guillaume Hivert <hivert.is.coming@gmail.com>",
   "contributors": [
-    "Alina Novikova <alinanov257@gmail.com> "
+    "Alina Novikova <alinanov257@gmail.com> https://github.com/Skullriver",
+    "Shuhan Duan <shuhanduan99@gmail.com> https://github.com/shuhan-duan"
   ],
   "license": "MIT",
   "scripts": {
