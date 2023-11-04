@@ -11,7 +11,7 @@ of CCG cards as NFT, create a marketplace for players to exchange NFT, and run a
 
 ## Demo
 
-https://github.com/shuhan-duan/collectible-card-game-daar/assets/47433536/a088f8d8-0bfd-4365-8cf5-295fb0883ced
+https://github.com/shuhan-duan/collectible-card-game-daar/assets/47433536/2a3956fb-6a94-4553-9551-58b05cd662ea
 
 
 # Installation
