@@ -38,7 +38,7 @@ contract Collection is ERC721 {
     // create cards for myself
     function addCard(string memory img, int256 gid) external {
         uint256 newCardId = _tokenIds.current();
-        _mint(msg.sender, newCardId); // Mint a new NFT to the caller
+        _mint(msg.sender, newCardId);
         _tokenIds.increment();
 
         Card memory newCard = Card({cardNumber: newCardId, img: img, gid: gid, onSell: false});
@@ -54,7 +54,7 @@ contract Collection is ERC721 {
         Card memory newCard = Card({cardNumber: newCardId, img: img, gid: gid, onSell: false});
         cards[newCardId] = newCard;
     }
-    // New function to retrieve card information based on the index
+
     function getCardInfo(uint256 tokenId) external view returns (string memory img, uint256 cardNumber, int256 gid, bool onSell, address cardOwner) {
         require(tokenId < cardCount, "Index out of bounds");
         Card storage card = cards[tokenId];
@@ -73,16 +73,9 @@ contract Collection is ERC721 {
 
     function transferCard(uint256 tokenId, uint256 price, address seller, address buyer, uint256 transfer) public payable {
         require(transfer >= price, "Insufficient payment");
-        // Transfer the NFT to the buyer
+        // transfer the NFT to the buyer
         safeTransferFrom(seller, buyer, tokenId);
         cards[tokenId].onSell = false;
-    }
-
-    function approve(address to, uint256 tokenId) public override{
-        address tOwner = ownerOf(tokenId);
-        require(to != tOwner, "Approval to owner");
-        tokenApprovals[tokenId] = to;
-        emit Approval(tOwner, to, tokenId);
     }
 
 }

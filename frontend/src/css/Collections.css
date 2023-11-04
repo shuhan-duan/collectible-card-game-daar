@@ -1,8 +1,8 @@
-.page-content{
+.page-content {
     width: 100%;
 }
 
-h1{
+h1 {
     max-width: 1250px;
     margin: 0 auto;
     font-weight: 900;
@@ -11,16 +11,10 @@ h1{
 .collection {
     display: flex;
     flex-wrap: wrap;
-    /*gap: 10px; !* Adjust the gap between cards as needed *!*/
-    max-width: 1250px; /* 5 cards * 215px max-width each */
-
-    /* Center the content horizontally within the container */
+    max-width: 1250px;
     margin: 0 auto;
     justify-content: start;
-    /* Add more styles to control spacing and alignment as needed */
 }
-
-/* Add more CSS rules to style the collection as desired */
 
 .collection-block {
     display: flex;
@@ -28,11 +22,11 @@ h1{
     margin: 0 auto;
 }
 
-.collection-title{
+.collection-title {
     padding: 10px;
 }
 
-.collection-count{
+.collection-count {
     display: inline-block;
     background-color: #76bafa;
     color: white;
@@ -40,16 +34,16 @@ h1{
     padding: 0.3em 0.3em;
 }
 
-.collection-name{
+.collection-name {
     font-weight: bold;
     margin-left: 10px;
 }
 
 .collection-left {
-    flex: 1; /* Takes 15% of the space */
+    flex: 1;
     max-width: 15%;
     padding: 20px;
-    /*background-color: #f1f1f1;*/
+
 }
 
 .collection-left ul {
@@ -62,12 +56,12 @@ h1{
 }
 
 .collection-right {
-    flex: 3; /* Takes the rest of the space */
+    flex: 3;
     max-width: 85%;
     padding: 20px;
     background-color: #fff;
 }
 
-.loading{
+.loading {
     text-align: center;
 }

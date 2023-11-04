@@ -62,7 +62,7 @@ contract Main is Ownable {
         CollectionInfo[] memory collectionInfo = new CollectionInfo[](uint256(countC));
         for (int256 i = 0; i < countC; i++) {
             CardInfo[] memory cardInfo = new CardInfo[](collections[i].cardCount());
-            if(collections[i].redeemed()){
+            if (collections[i].redeemed()) {
                 for (uint256 j = 0; j < collections[i].cardCount(); j++) {
                     (string memory img, uint256 cardNumber, int256 gid, bool onSell, address cardOwner) = collections[i].getCardInfo(j);
                     if (all) {
@@ -99,7 +99,7 @@ contract Main is Ownable {
 
         collections[listings[listingIndex].collectionId].transferCard(listings[listingIndex].tokenId, listings[listingIndex].price, listings[listingIndex].seller, msg.sender, msg.value);
 
-        // Remove the listing
+        // remove the listing
         if (listingIndex < listings.length - 1) {
             listings[listingIndex] = listings[listings.length - 1];
         }

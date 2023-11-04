@@ -5,7 +5,7 @@ a {
     color: unset;
 }
 
-.links{
+.links {
     display: flex;
     max-width: 1250px;
     justify-content: end;
@@ -15,7 +15,7 @@ a {
     align-items: center;
 }
 
-.links a{
+.links a {
     font-family: "Oswald Regular", sans-serif;
     text-transform: uppercase;
     font-weight: bold;
@@ -23,17 +23,16 @@ a {
     margin: 0 26px;
 }
 
-.links .active{
+.links .active {
     border: #666666 1px solid;
     border-radius: 10px;
     padding: 5px;
 }
 
-.text-connected{
+.text-connected {
     font-family: "Oswald Regular", sans-serif;
     background-color: #76bafa;
     color: white;
-    /*border: #666666 1px solid;*/
     border-radius: 10px;
     padding: 5px;
     margin: 0 0 0 26px;

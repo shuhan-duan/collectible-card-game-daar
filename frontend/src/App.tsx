@@ -1,6 +1,4 @@
 import styles from './styles.module.css'
-import Collections from './components/Collections';
-import Menu from "@/components/Menu";
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import Header from "@/components/Header";
 import * as ethereum from "@/lib/ethereum";
@@ -39,15 +37,15 @@ const useWallet = () => {
 
     return useMemo(() => {
         if (!details || !contract) return
-        return { details, contract }
+        return {details, contract}
     }, [details, contract])
 }
 
 export const App = () => {
     const wallet = useWallet()
-      return (
+    return (
         <div className={styles.body}>
             <Header wallet={wallet}/>
         </div>
-      )
+    )
 }

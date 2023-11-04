@@ -1,6 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from "react";
-import * as ethereum from "@/lib/ethereum";
-import * as main from "@/lib/main";
+import React from "react";
 
 interface Props {
     wallet: any

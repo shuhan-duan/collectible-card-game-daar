@@ -1,10 +1,9 @@
 import React from 'react';
 import '../css/Header.css';
-import TextConnection from "@/components/TextConnection";
 import Menu from "@/components/Menu";
 
 interface HeaderProps {
-    wallet : any
+    wallet: any
 }
 
 const PageHeader: React.FC<HeaderProps> = ({wallet}) => {

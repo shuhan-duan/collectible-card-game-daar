@@ -36,7 +36,16 @@ interface CardInfo {
     scrD: any;
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, cardData, onSell, onClickSell, onClickBuy, isOwner, showButtons, owner }) => {
+const Card: React.FC<CardProps> = ({
+                                       imageUrl,
+                                       cardData,
+                                       onSell,
+                                       onClickSell,
+                                       onClickBuy,
+                                       isOwner,
+                                       showButtons,
+                                       owner
+                                   }) => {
 
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [cardJson, setCardJson] = useState<CardInfo | null>(null);
@@ -60,6 +69,8 @@ const Card: React.FC<CardProps> = ({ imageUrl, cardData, onSell, onClickSell, on
             });
     }, []);
 
+
+    let classname = owner === "you" ? " owner-text-card you-owner" : "owner-text-card";
     return (
         <div className="card-block">
             <div className="card">
@@ -75,11 +86,13 @@ const Card: React.FC<CardProps> = ({ imageUrl, cardData, onSell, onClickSell, on
             {
                 showButtons ?
                     onSell ? (
-                        isOwner ? (<div> on sale </div>) : (<button className="buy-button" onClick={onClickBuy}> Buy </button>)
+                        isOwner ? (<div> on sale </div>) : (
+                            <button className="buy-button" onClick={onClickBuy}> Buy </button>)
                     ) : (
-                        isOwner ? (<button className="sell-button" onClick={onClickSell}> Sell </button>) : (<div></div>)
+                        isOwner ? (<button className="sell-button" onClick={onClickSell}> Sell </button>) : (
+                            <div></div>)
                     )
-                : (<div className="owner-text-card">owned by: <span>{owner}</span></div>)
+                    : (<div className={classname}>owned by: <span>{owner}</span></div>)
             }
 
         </div>

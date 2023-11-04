@@ -1,9 +1,7 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import '../css/Boosters.css'
 import Card from "@/components/Card";
-import boosterImg from '../img/booster.jpg';
-import * as util from "util";
 import {BigNumber, ethers} from "ethers";
 
 interface BoosterProps {
@@ -35,7 +33,6 @@ const Marketplace: React.FC<BoosterProps> = ({wallet}) => {
     }, [wallet]);
 
     const getListing = () => {
-        // Ensure wallet and wallet.details.account are defined
         axios
             .get(`http://localhost:3000/api/collections/getListing`)
             .then((response) => {
@@ -46,7 +43,7 @@ const Marketplace: React.FC<BoosterProps> = ({wallet}) => {
             });
     }
 
-    const buyCard = async (listingId : number) => {
+    const buyCard = async (listingId: number) => {
         const valueInWei: BigNumber = ethers.utils.parseEther("0.1");
 
         if (wallet?.contract) {
@@ -68,9 +65,12 @@ const Marketplace: React.FC<BoosterProps> = ({wallet}) => {
                         {listingData
                             .map((item) => (
                                 <Card key={item.id} imageUrl={item.img}
-                                      onClickSell={() => {}}
+                                      onClickSell={() => {
+                                      }}
                                       onClickBuy={() => buyCard(item.id)}
-                                      cardData={item.cardGid} onSell={item.onSell} isOwner={walletAddress === item.cardOwner} showButtons={true} owner={item.cardOwner.substring(0, 3)+"..."+item.cardOwner.substring(38)}/>
+                                      cardData={item.cardGid} onSell={item.onSell}
+                                      isOwner={walletAddress === item.cardOwner} showButtons={true}
+                                      owner={item.cardOwner.substring(0, 3) + "..." + item.cardOwner.substring(38)}/>
                             ))
                         }
                     </div>

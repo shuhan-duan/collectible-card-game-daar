@@ -1,9 +1,7 @@
 import express, {Request, Response, Router} from 'express';
 import * as main from "../contract";
-import { PromiseOrValue } from '$/common';
 
 const collectionsRouter: Router = express.Router();
-
 
 async function getAllCollections() {
 
@@ -13,7 +11,7 @@ async function getAllCollections() {
     return collection.map((collection: any) => {
         return {
             collectionId: collection[0].toNumber(),
-            collectionName: collection[1] === "BP" ? collection[1]+"-"+collection[0].toNumber() : collection[1],
+            collectionName: collection[1] === "BP" ? collection[1] + "-" + collection[0].toNumber() : collection[1],
             cardCount: collection[2].toNumber(),
             cards: collection[3].map((card: any) => {
                 return {
@@ -38,7 +36,7 @@ async function getUserCollections(user: string) {
     return collection.map((collection: any) => {
         return {
             collectionId: collection[0].toNumber(),
-            collectionName: collection[1] === "BP" ? collection[1]+"-"+collection[0].toNumber() : collection[1],
+            collectionName: collection[1] === "BP" ? collection[1] + "-" + collection[0].toNumber() : collection[1],
             cardCount: collection[2].toNumber(),
             cards: collection[3].map((card: any) => {
                 return {
@@ -84,7 +82,7 @@ collectionsRouter.get('/get', async (req: Request, res: Response) => {
         res.json(mes);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(500).json({error: 'An error occurred'});
     }
 });
 
@@ -95,7 +93,7 @@ collectionsRouter.get('/getFor/:address', async (req: Request, res: Response) =>
         res.json(mes);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(500).json({error: 'An error occurred'});
     }
 });
 
@@ -105,7 +103,7 @@ collectionsRouter.get('/getListing', async (req: Request, res: Response) => {
         res.json(mes);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(500).json({error: 'An error occurred'});
     }
 });
 

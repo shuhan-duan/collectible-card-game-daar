@@ -1,13 +1,10 @@
-// CardPopup.tsx
-
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '../css/CardPopup.css';
-import axios from "axios";
 
 interface CardPopupProps {
     cardImg: string;
-    cardData: CardInfo; // Replace 'any' with the actual type of cardData
-    onClose: () => void; // Function that takes no arguments and returns void
+    cardData: CardInfo;
+    onClose: () => void;
 }
 
 interface CardInfo {
@@ -88,7 +85,7 @@ const atkAssociations: { [key: string]: string } = {
     '6': 'Slash/Strike',
 };
 
-const CardPopup: React.FC<CardPopupProps> = ({ cardImg, cardData, onClose }) => {
+const CardPopup: React.FC<CardPopupProps> = ({cardImg, cardData, onClose}) => {
 
     return (
         <div className="card-popup">
@@ -101,7 +98,7 @@ const CardPopup: React.FC<CardPopupProps> = ({ cardImg, cardData, onClose }) => 
                         <div className="card-title">
                             <div className="info-col">
                                 <span>{cardData.cid}</span>
-                                 |
+                                |
                                 <span>{trAssociations[cardData.t]}</span>
                             </div>
                             <div className="cardName">
@@ -112,7 +109,7 @@ const CardPopup: React.FC<CardPopupProps> = ({ cardImg, cardData, onClose }) => 
 
                     <div className="card-info">
                         <div className="card-info-img">
-                            <img src={cardImg} alt="Card" />
+                            <img src={cardImg} alt="Card"/>
                         </div>
                         <div>
                             {cardData === null ? (
@@ -121,7 +118,7 @@ const CardPopup: React.FC<CardPopupProps> = ({ cardImg, cardData, onClose }) => 
                                 <div className="backCol">
                                     <div className="col2">
                                         <div className="cost">
-                                            <h3>{cardData.l === null ? "Cost" : "Life" }</h3>
+                                            <h3>{cardData.l === null ? "Cost" : "Life"}</h3>
                                             {cardData.l === null ? cardData.cs : cardData.l}
                                         </div>
                                         <div className="attribute">

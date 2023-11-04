@@ -1,5 +1,4 @@
-// Collections.tsx
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import '../css/Collections.css'
 import Card from "@/components/Card";
@@ -36,7 +35,7 @@ const UserCollections: React.FC<CollectionProps> = ({wallet}) => {
         }
     }, [wallet]);
 
-    const sellCard = async (collectionId : number, tokenId : number) => {
+    const sellCard = async (collectionId: number, tokenId: number) => {
         if (wallet?.contract) {
             const sell = await wallet.contract.listCard(collectionId, tokenId);
             sell.wait().then(getCollections)
@@ -87,8 +86,11 @@ const UserCollections: React.FC<CollectionProps> = ({wallet}) => {
                                                 (
                                                     <Card key={card.cardNumber} imageUrl={card.img}
                                                           onClickSell={() => sellCard(item.collectionId, card.cardNumber)}
-                                                          onClickBuy={() => {}}
-                                                          cardData={card.cardGid} onSell={card.onSell} isOwner={true} showButtons={true} owner={walletAddress.substring(0, 3)+"..."+walletAddress.substring(38)}/>
+                                                          onClickBuy={() => {
+                                                          }}
+                                                          cardData={card.cardGid} onSell={card.onSell} isOwner={true}
+                                                          showButtons={true}
+                                                          owner={walletAddress.substring(0, 3) + "..." + walletAddress.substring(38)}/>
                                                 )
                                             )
                                     }
